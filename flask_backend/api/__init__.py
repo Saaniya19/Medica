@@ -8,7 +8,7 @@ def create_app():
 
     # app.debug = True
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:fiutest123@localhost/portfolio_tracker_db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:fiutest123@localhost/medica'
 
     db.init_app(app)
 

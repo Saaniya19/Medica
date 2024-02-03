@@ -37,7 +37,7 @@ function App() {
           
       
             <div className=' h-full w-96 overflow-y-auto'>
-              <Stocks stocks={stocks} on_select_stock={set_selected_stock} selected_stock={selected_stock}/>
+              {/* <Stocks stocks={stocks} on_select_stock={set_selected_stock} selected_stock={selected_stock}/> */}
             </div>
             
           </div>
