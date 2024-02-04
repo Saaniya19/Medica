@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 import random
-from .models import Stock, Portfolio_Log, News_Item, StockData
+from .models import Patient
 from . import db
 import string
 import requests
@@ -14,10 +14,61 @@ from pytz import timezone
 
 
 # api_key = 'OTKHLLKZ9SXFZUHP'
-api_key = 'DNWQMLFC43J1PHDI'
+# api_key = 'DNWQMLFC43J1PHDI'
 
 
 main = Blueprint('main', __name__)
+
+@main.route('/add_data', methods=['POST'])
+def add_patient():
+    request_data = request.json
+    name = request_data['name']
+    email = request_data['email']
+    comments = request_data['comments']
+    age = request_data['age']
+    sex = request_data['sex']
+    address = request_data['address']
+
+    new_patient = Patient(name, email, comments, age, sex, address)
+
+    db.session.add(new_patient)
+    db.session.commit()
+
+    return jsonify({'patient added'})
+
+
+@main.route('/get_patients', methods = ['GET'])
+
+def get_patients():
+
+    patient_list = Patient.query.all()
+
+    patients = []
+
+    for patient in patient_list:
+        patients.append({'name': patient.name, 'email': patient.email, 'comments': patient.comments, 'age':patient.age, 'sex': patient.sex, 'address': patient.address})
+
+    return jsonify({'patients':patients})
+
+
+
+@main.route('/delete_patient', methods=['DELETE'])
+
+def delete_patient():
+
+    patient_id = request.json['selected_patient']
+
+    row = Patient.query.filter_by(id=patient_id)
+
+    # note: this does not account for the medication-patient matching table yet
+
+    db.session.delete(row)
+
+    db.session.commit()
+
+    return jsonify({'message': 'Patient deleted successfully'})
+   
+
 
 @main.route('/add_data', methods=['POST'])
 def add_data():
