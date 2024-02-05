@@ -2,8 +2,10 @@ import React, {useEffect, useState} from "react"
 import './App.css';
 import { Nav } from './components/NavBar.js'
 import { TypeAheadDropdown } from './components/TypeaheadDropdown.js'
+import { Link } from 'react-router-dom'
 
-function VerifyPrescription() {
+export const VerifyPrescription = ({}) => {
+
     const [isVisible, setIsVisible] = useState(false);
     const [selectedOption, setSelectedOption] = useState('');
 
@@ -40,19 +42,77 @@ function VerifyPrescription() {
                         "Canakinumab", "Candesartan", "Candicidin", "Cangrelor", "Caplacizumab", "Capmatinib", "Capreomycin", "Captodiamine", "Captopril", "Carbachol", "Carbamazepine", "Carbapenem salts", "Carbenoxolone", "Carbetocin", "Carbidopa", "Carbimazole", "Carbocisteine", "Carboplatin", "Carbromal", "Carfilzomib", 
                         "Carglumic acid", "Cariprazine", "Carisoprodol", "Carmustine", "Carphenazine", "Carprofen", "Carvedilol", "Casirivimab", "Caspofungin", "Catumaxomab", "Cedazuridine", "Celecoxib", "Cemiplimab", "Cenegermin", "Cenobamate", "Cephalosporin C", "Ceritinib", "Cerivastatin", "Cerliponase alfa", 
                         "Certolizumab pegol", "Cetrorelix", "Cetuximab", "Chloral", "Chloral hydrate", "Chloralformamide", "Chloralimide", "Chlorambucil", "Chloramphenicol", "Chlorcyclizine", "Chlorhexidine", "Chlorisondamine", "Chlormezanone", "Chloroquine", "Chlorothiazide", "Chlorpromazine", "Chlorpropamide", 
-                        "Chlorprothixene", "Cholestyramine resin", "Choline salicylate", "Choline theophyllinate", "Dimercaprol", "Dimethyl sulfoxide", "Dimethylfumarate", "Dinutuximab", "Diphenidol or its salts", "Diphenylhydantoin (phenytoin) or its salts", "Dipivefrin or its salts", "Diprophylline or its salts", 
-                        "Dipyridamole", "Dirithromycin", "Dirlotapide", "Disopyramide or its salts", "Disulfiram", "Dobutamine or its salts", "Docetaxel or its derivatives", "Cabazitaxel", "Dolasetron or its salts", "Dolutegravir or its salts", "Domperidone", "Donepezil or its salts", "Dopamine or its salts", "Doravirine", 
-                        "Dornase alfa", "Dorzolamide or its salts", "Dostarlimab", "Doxacurium chloride", "Doxapram", "Doxazosin or its salts", "Doxepin or its salts", "Doxercalciferol or its derivatives", "Doxorubicin or its salts", "Doxycycline or its salts or derivatives", "Doxylamine or its salts", "Droperidol or its salts", 
-                        "Drotrecogin", "Dulaglutide", "Duloxetine or its salts", "Dupilumab", "Durvalumab", "Dutasteride", "Econazole or its salts", "Ecothiophate or its salts", "Ectylurea or its salts", "Eculizumab", "Edaravone or its derivatives", "Edoxaban or its salts", "Edrophonium chloride", "Efalizumab", "Efavirenz", 
-                        "Efgartigimod alfa", "Efinaconazole", "Eflornithine or its salts or derivatives", "Elagolix or its salts", "Elbasvir or its salts", "Eletriptan or its salts", "Elexacaftor or its salts", "Eliglustat or its salts", "Elosulfase alfa", "Elotuzumab", "Eltrombopag or its salts", "Eltrombopag olamine", 
-                        "Eluxadoline or its salts", "Elvitegravir or its salts or derivatives", "Emamectin or its salts", "Emamectin benzoate", "Embutramide", "Emedastine or its salts", "Emicizumab", "Empagliflozin", "Emtricitabine", "Emylcamate", "Enalapril or its salts or derivatives", "Enalapril maleate", "Enasidenib or its salts", 
-                        "Encorafenib or its salts", "Enflurane", "Enfortumab vedotin", "Enfuvirtide", "Enoxaparin or its salts", "Enrofloxacin", "Entacapone", "Entecavir", "Entrectinib or its salts", "Enzalutamide", "Epinephrine or its salts", "Epinephrine topical solution for hemostasis when sold at a concentration equal to or greater than 1 mg/ml (1:1000)", 
-                        "Epirubicine or its salts", "Eplerenone", "Eprosartan or its salts or derivatives", "Epsiprantel", "Eptifibatide or its salts", "Eptinezumab", "Erdafitinib or its salts", "Erenumab", "Ergot alkaloids or their salts", "Eribulin or its salts or derivatives", "Eribulin mesylate", "Erlotinib or its salts", "Ertugliflozin or its derivatives", 
-                        "Erythromycin or its salts or derivatives", "Azithromycin", "Clarithromycin", "Telithromycin", "Erythropoiesis stimulating hormone", "Erythropoietin", "Darbepoetin alpha", "Epoetin alfa", "Escitalopram or its salts", "Eslicarbazepine acetate", "Esmolol or its salts", "Esomeprazole or its salts", "Esomeprazole magnesium", 
-                        "Estramustine or its salts", "Etanercept", "Ethacrynic acid", "Ethambutol or its salts", "Ethionamide or its salts", "Ethomoxane or its salts", "Ethotoin or its salts", "Ethyl trichloramate", "Etidronic acid or its salts", "Etofenamate", "Etonogestrel", "Etoposide or its salts", "Etravirine", "Eucalyptol or its salts", 
-                        "Eucatropine or its salts", "Eucatropine hydrochloride", "Eucatropine nitrate", "Eucatropine salicylate", "Eucatropine sulfate", "Eucatropine tannate", "Eugesterone or its salts", "Eupatorin or its salts", "Eupatorin salts", "Eupaverin or its salts", "Eupaverin hydrochloride", "Eupaverin iodide", "Eupaverin sulfate", "Eupaverin tartrate", 
-                        "Eupaverin tincture", "Eupaverin valerate", "Eupental or its salts", "Eupentol or its salts", "Eupentol tartrate", "Eupentylnitrate", "Eupentylnitrate hydrochloride", "Eupentylnitrate sulfate", "Eupentylnitrate tartrate", "Eupenylnitrate", "Eupenylnitrate hydrochloride", "Eupenylnitrate sulfate", "Eupenylnitrate tartrate", "Eupental or its salts",
-                        "Eupental tartrate", "Eupental nitrate", "Eupental hydrochloride", "Eupental sulfate", "Eupental tartrate", "Eupental valerate"]} onSelect={handleOptionSelect}/>
+                        "Chlorprothixene", "Cholestyramine resin", "Choline salicylate", "Choline theophyllinate", "Dimercaprol", "Dimethyl sulfoxide", "Dimethylfumarate", "Dinutuximab", "Diphenidol", "Diphenylhydantoin (phenytoin)", "Dipivefrin", "Diprophylline", 
+                        "Dipyridamole", "Dirithromycin", "Dirlotapide", "Disopyramide", "Disulfiram", "Dobutamine", "Docetaxel", "Cabazitaxel", "Dolasetron", "Dolutegravir", "Domperidone", "Donepezil", "Dopamine", "Doravirine", 
+                        "Dornase alfa", "Dorzolamide", "Dostarlimab", "Doxacurium chloride", "Doxapram", "Doxazosin", "Doxepin", "Doxercalciferol", "Doxorubicin", "Doxycycline ", "Doxylamine", "Droperidol", 
+                        "Drotrecogin", "Dulaglutide", "Duloxetine", "Dupilumab", "Durvalumab", "Dutasteride", "Econazole", "Ecothiophate", "Ectylurea", "Eculizumab", "Edaravone", "Edoxaban", "Edrophonium chloride", "Efalizumab", "Efavirenz", 
+                        "Efgartigimod alfa", "Efinaconazole", "Eflornithine ", "Elagolix", "Elbasvir", "Eletriptan", "Elexacaftor", "Eliglustat", "Elosulfase alfa", "Elotuzumab", "Eltrombopag", "Eltrombopag olamine", 
+                        "Eluxadoline", "Elvitegravir ", "Emamectin", "Emamectin benzoate", "Embutramide", "Emedastine", "Emicizumab", "Empagliflozin", "Emtricitabine", "Emylcamate", "Enalapril ", "Enalapril maleate", "Enasidenib", 
+                        "Encorafenib", "Enflurane", "Enfortumab vedotin", "Enfuvirtide", "Enoxaparin", "Enrofloxacin", "Entacapone", "Entecavir", "Entrectinib", "Enzalutamide", "Epinephrine", "Epinephrine topical solution for hemostasis when sold at a concentration equal to or greater than 1 mg/ml (1:1000)", 
+                        "Epirubicine", "Eplerenone", "Eprosartan ", "Epsiprantel", "Eptifibatide", "Eptinezumab", "Erdafitinib", "Erenumab", "Ergot alkaloids or their salts", "Eribulin ", "Eribulin mesylate", "Erlotinib", "Ertugliflozin", 
+                        "Erythromycin ", "Azithromycin", "Clarithromycin", "Telithromycin", "Erythropoiesis stimulating hormone", "Erythropoietin", "Darbepoetin alpha", "Epoetin alfa", "Escitalopram", "Eslicarbazepine acetate", "Esmolol", "Esomeprazole", "Esomeprazole magnesium", 
+                        "Estramustine", "Etanercept", "Ethacrynic acid", "Ethambutol", "Ethionamide", "Ethomoxane", "Ethotoin", "Ethyl trichloramate", "Etidronic acid", "Etodolac", "Etomidate", "Etoposide", "Etravirine", "Etretinate", "Etymemazine", "Evinacumab", "Evolocumab", "Exemestane", "Exenatide", 
+                        "Ezetimibe", "Ezogabine", "Famciclovir", "Famotidine", "Fampridine", "Faricimab", "Febuxostat", "Fedratinib", "Felodipine", "Fenfluramine", "Fenofibrate", "Fenoprofen", "Fenoterol", "Fesoterodine", "Fidaxomicin", "Filgrastim", "Finafloxacin", "Finasteride", "Finerenone", "Fingolimod", 
+                        "Firocoxib", "Flavoxate", "Flecainide", "Fleroxacin", "Flibanserin", "Floctafenine", "Florfenicol", "Fluconazole", "Flucytosine", "Fludarabine", "Flunarizine", "Flunixin", "Fluorouracil", "Fluoxetine", "Flupentixol", "Fluphenazine", "Fluralaner", "Flurbiprofen", "Fluspirilene", "Flutamide", 
+                        "Fluvastatin", "Fluvoxamine", "Folic acid", "Follicle stimulating hormone", "Fomepizole", "Fondaparinux sodium", "Formestane", "Formoterol", "Foscarbidopa", "Foscarnet sodium", "Fosfomycin", "Fosinopril", "Foslevodopa", "Fosphenytoin", "Fostamatinib", "Fostemsavir", "Framycetin", 
+                        "Fremanezumab", "Frovatriptan", "Fulvestrant", "Furaltadone", "Furazolidone", "Furosemide", "Fusidic acid", "Gabapentin", "Galantamine", "Galcanezumab", "Gallamine triethiodide", "Gallium", "Galsulfase", "Ganciclovir", "Ganirelix", "Gatifloxacin", "Gefitinib", "Gemcitabine", "Gemfibrozil", 
+                        "Gemifloxacin", "Gemtuzumab ozogamicin", "Gentamicin", "Gilteritinib", "Givosiran", "Glasdegib", "Glatiramer", "Glecaprevir", "Gliclazide", "Glimepiride", "Glipizide", "Glofitamab", "Glyburide", "Glycopyrronium bromide", "Gold", "Golimumab", "Gonadorelin", "Gonadotropin, chorionic (human)", 
+                        "Gonadotropins, serum (human)", "Goserelin", "Granisetron", "Grazoprevir", "Grepafloxacin", "Griseofulvin", "Guanethidine", "Guanfacine", "Guselkumab", "Halofantrine", "Haloperidol", "Halothane", "Hemin", "Hetastarch", "Hexachlorophene", "Hexacyclonate sodium", "Hexamethonium", "Histrelin", 
+                        "Hydralazine", "Hydroquinone", "Hydroxocobalamin", "Hydroxychloroquine", "Hydroxyurea", "Hydroxyzine", "Hyoscine butylbromide", "Ibafloxacin", "Ibandronic acid", "Ibogaine", "Ibrutinib", "Ibuprofen", "Ibutilide", "Icatibant", "Icosapent ethyl", "Idarubicin", "Idarucizumab", "Idebenone", 
+                        "Idecabtagene vicleucel", "Idelalisib", "Idoxuridine", "Idursulfase", "Ifosfamide", "Imatinib", "Imdevimab", "Imidapril", "Imiglucerase", "Imipramine", "Imiquimod", "Immunogenic substances", "Inclisiran", "Indacaterol", "Indapamide", "Indinavir", "Indomethacin", "Infigratinib", "Infliximab", 
+                        "Ingenol mebutate", "Inhaled human insulin", "Inosiplex", "Inotersen", "Inotuzumab ozogamicin", "Interferon", "Iodochlorohydroxyquin", "Ipilimumab", "Ipratropium", "Iproniazid", "Irbesartan", "Irinotecan", "Iron derivatives", "Isatuximab", "Isavuconazole", "Isocarboxazid", "Isoflurane", 
+                        "Isoniazid", "Isoproterenol", "Isotretinoin", "Isoxsuprine", "Isradipine", "Itraconazole", "Ivabradine", "Ivacaftor", "Ixazomib", "Ixekizumab", "Kanamycin", "Ketanserin", "Ketoconazole", "Ketoprofene", "Ketorolac", "Ketotifen", "L-Tryptophan", "Labetalol", "Lacosamide", "Lactic acid", 
+                        "Lamivudine", "Lamotrigine", "Lanadelumab", "Lanreotide", "Lansoprazole", "Lanthanum salts", "Lapatinib", "Laronidase", "Larotrectinib", "Ledipasvir", "Lefamulin", "Leflunomide ", "Teriflunomide", "Lemborexant", "Lenacapavir", 
+                        "Lenalidomide", "Lenvatinib", "Letermovir", "Letrozole", "Leucovorin", "Leuprolide", "Levamisole", "Levetiracetam", "Levobunolol", "Levocabastine ", "Levocarnitine ", 
+                        "Levodopa", "Levomilnacipran", "Lidocaine", "Lifitegrast", "Linaclotide ", "Linagliptin ", "Lincomycin ", "Clindamycin", "Linezolid", "Liothyronine", 
+                        "Liraglutide", "Lisinopril ", "Lithium", "Lixisenatide", "Lodoxamide ", "Lodoxamide tromethamine", "Lomefloxacin", "Lomitapide", "Lomustine", "Lopinavir", "Lorlatinib", 
+                        "Losartan", "Losoxantrone", "Lovastatin", "Loxapine", "Lumacaftor ", "Lumasiran", "Lumiracoxib", "Lurasidone", "Lurbinectedin ", "Luspatercept", "Lutropin alfa", 
+                        "Macitentan", "Magnesium glutamate hydrobromide", "Mannitol", "Maprotiline", "Maralixibat", "Maraviroc", "Marbofloxacin ", "Maribavir", "Maropitant", "Mavacamten", "Mebendazole", 
+                        "Mecamylamine", "Mecasermin", "Mechlorethamine", "Meclizine", "Meclofenamic acid", "Medetomidine", "Mefenamic acid", "Mefloquine ", "Megestrol", "Melanoma therapeutic vaccine", 
+                        "Melarsomine", "Meloxicam ", "Melphalan", "Memantine", "Menotropins (human)", "Mepacrine", "Mepazine", "Mephenoxalone", "Mephentermine", "Mepolizumab", "Mercaptopurine", "Mesna", "Mesoridazine", 
+                        "Metaldehyde", "Metformin ", "Methacholine chloride", "Methazolamide", "Methimazole", "Methisazone", "Methoin (Mephenytoin)", "Methotrexate", "Methotrimeprazine", "Methoxamine", "Methoxsalen", 
+                        "Methoxy polyethylene glycol-epoetin beta", "Methoxyflurane", "Methyldopa", "Methylnaltrexone", "Methylnaltrexone bromide", "Methylparafynol", "Methysergide ", "Metoclopramide", "Metolazone", "Metomidate", 
+                        "Metopimazine", "Metoprolol", "Metronidazole", "Metyrapone", "Mexiletine", "Micafungin", "Miconazole", "Midodrine", "Midostaurin", "Mifepristone", "Migalastat", "Miglustat", 
+                        "Milbemycin", "Moxidectin", "Milrinone", "Minoxidil", "Mirabegron", "Mirikizumab", "Mirtazapine", "Mitomycin", "Mitotane", "Mitoxantrone", "Mitratapide", "Mivacurium chloride", "Moclobemide ", 
+                        "Modafinil", "Mogamulizumab", "Molgramostim", "Montelukast", "Moxifloxacin ", "Muromonab-CD3", "Mycophenolic acid ", "Mycophenolate mofetil", "Nabumetone", "Nadolol", "Nadroparin", 
+                        "Nafarelin ", "Nafarelin acetate", "Nalidixic acid", "Nalmefene", "Naloxegol", "Naloxegol oxalate", "Naloxone", "Naloxone hydrochloride", "Naltrexone ", "Naproxen", "Naproxen sodium", 
+                        "Naratriptan", "Natalizumab", "Nateglinide ", "Nebivolol ", "Necitumumab", "Nedocromil", "Nefazodone", "Nelarabine", "Nelfinavir", "Neocinchophen", "Neomycin", 
+                        "Paromomycin sulfate", "Neostigmine salts", "Nepafenac", "Neratinib", "Nesiritide", "Netupitant", "Nevirapine", "Nialamide", "Nicarbazin", "Nicardipine", "Nicotine", 
+                        "Nicotinic acid", "Nifedipine", "Nilotinib", "Nilutamide", "Nimodipine", "Nintedanib", "Niraparib", "Nirmatrelvir", "Nitisinone", "Nitric oxide", "Nitrofurantoin", "Nitroscanate", "Nivolumab", 
+                        "Nizatidine", "Nomifensine", "Norfloxacin", "Nortriptyline", "Novobiocin", "Nusinersen", "Nylidrin", "Nystatin", "Obeticholic acid", "Obiltoxaximab", 
+                        "Obinutuzumab", "Oclacitinib", "Oclacitinib maleate", "Ocrelizumab", "Ocriplasmin", "Octatropine methylbromide", "Octreotide", "Odevixibat", "Ofatumumab", "Ofloxacin", "Levofloxacin", "Olanzapine", "Olaparib", "Olaratumab", 
+                        "Oleandomycin", "Olmesartan", "Olmesartan medoxmil", "Olodaterol", "Olopatadine", "Olsalazine", "Omalizumab", "Ombitasvir", "Omeprazole", "Omeprazole magnesium", 
+                        "Onasemnogene abeparvovec", "Ondansetron", "Orbifloxacin", "Orciprenaline (Metaproterenol)", "Orlistat", "Ormetoprim", "Ornidazole", "Oseltamivir", "Osimertinib", "Ospemifene", 
+                        "Oxaliplatin", "Oxanamide", "Oxaprozin", "Oxcarbazepine", "Oxolinic acid", "Oxprenolol", "Oxybutynin", "Oxyphenbutazone", "Oxytocin", "Ozanimod", "Ozenoxacin", 
+                        "Paclitaxel", "Palbociclib", "Palifermin", "Paliperidone", "Palivizumab", "Palonosetron", "Palonosetron hydrochloride", "Palovarotene", "Pamidronic acid", "Pancreatic extracts", 
+                        "Pancreatin", "Pancrelipase", "Pancuronium", "Panitumumab", "Pantoprazole", "Paraldehyde", "Paramethadione", "Pargyline", "Paricalcitol", "Paritaprevir(Veruprevir)", "Paroxetine", "Pasireotide", 
+                        "Patiromer sorbitex calcium", "Patisiran", "Pazopanib", "Pegaptanib", "Pegaspargase", "Pegcetacoplan", "Pegfilgrastim", "Pegvaliase", "Pegvisomant", "Pembrolizumab", "Pemetrexed", "Pemigatinib", 
+                        "Penciclovir", "Penicillamine", "Penicillin", "Solifenacin", "Somatropin", "Somatostatin", "Spinosyn A and D isoforms", "Stiripentol", "Streptomycin", "Succinimide", "Sulfinpyrazone", 
+                        "Sulindac", "Sumatriptan", "Sunitinib", "Suprofen", "Suvorexant", "Tacrolimus", "Tadalafil", "Tafamidis", "Tafasitamab", "Talazoparib", "Taliglucerase alfa", "Tamoxifen", 
+                        "Tamsulosin", "Tazarotene", "Tazobactam", "Tebentafusp", "Teclistamab", "Tecovirimat", "Tedizolid", "Teduglutide", "Teflubenzuron", "Tegaserod", "Telaprevir", "Telbivudine", "Telmisartan", "Telotristat", 
+                        "Temozolomide", "Tenapanor", "Teniposide", "Tenofovir", "Tenoxicam", "Tepotinib", "Tepoxalin", "Terazosin", "Terbinafine", "Terbutaline", "Terconazole", "Terfenadine", "Teriparatide", 
+                        "Terlipressin", "Tesamorelin", "Tetrabenazine", "Tetracaine", "Tetracycline", "Tezacaftor", "Tezepelumab", "Thalidomide", "Theophylline", "Thiabendazole", "Thiethylperazine", "Thiocarlide", "Thioguanine", "Thiopropazate", 
+                        "Thioproperazine", "Thioridazine", "Thiotepa", "Thiothixene", "Thiouracil", "Thyroid", "Thyrotropin alfa", "Thyroxin", "Tiaprofenic acid", "Ticagrelor", "Ticlopidine", "Tigecycline", "Tildrakizumab", "Tiludronic acid", "Timolol", 
+                        "Tinidazole", "Tinzaparin", "Tioconazole", "Tiotropium bromide", "Tipiracil", "Tipranavir", "Tirbanibulin", "Tirofiban", "Tirzepatide", "Tisagenlecleucel", "Tixagevimab", "Tizanidine", "Tobramycin", "Tocainide", "Toceranib", 
+                        "Tocilizumab", "Tofacitinib", "Tolazamide", "Tolazoline", "Tolbutamide", "Tolcapone", "Tolfenamic acid", "Tolmetin", "Tolterodine", "Toltrazuril", "Tolvaptan", "Topiramate", "Topotecan", "Torasemide", "Toremifene", 
+                        "Trabectedin", "Tralokinumab", "Trametinib", "Trandolapril", "Tranexamic acid", "Tranylcypromine", "Trastuzumab", "Trastuzumab deruxtecan", "Trastuzumab emtansine", "Trazodone", "Tremelimumab", "Treosulfan", "Tretamine", "Tretinoin", 
+                        "Treprostinil", "Tretinoin", "Triamcinolone", "Triamterene", "Triazolam", "Tribenoside", "Tributol", "Trientine", "Trientine", "Triethylperazine", "Trifluperidol", 
+                        "Trifluridine", "Trifunctional bispecific antibody targeting BCMA and CD3", "Triflusal", "Triglycidyl isocyanurate", "Trimebutine", "Trimethadione", "Trimethobenzamide", "Trimethoprim", "Trimetrexate", "Trimipramine", "Triptorelin", 
+                        "Troleandomycin", "Tropisetron", "Trovafloxacin", "Tuberculin", "Tulathromycin", "Tulobuterol", "Turoctocog alfa", "Ulipristal", "Umeclidinium bromide", "Urapidil", "Urea", "Urease", "Urethane", 
+                        "Uricase", "Uricosuric agent", "Ursodeoxycholic acid", "Ustekinumab", "Vaborbactam", "Vaccines", "Valaciclovir", "Valdecoxib", "Valganciclovir", "Valine", "Valproic acid", "Valsartan", "Vancomycin", 
+                        "Vandetanib", "Vaniprevir", "Vapreotide", "Varenicline", "Vatalanib", "Vedolizumab", "Venetoclax", "Verapamil", "Vernakalant", "Vervain", "Vestronidase alfa", "Vidarabine", "Vilanterol trifenatate", "Vildagliptin", 
+                        "Vinblastine", "Vincristine", "Vindesine", "Vinflunine", "Vinpocetine", "Vinyl resin", "Violarite", "Vismodegib", "Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D", "Vitamin E", "Vitamin K", 
+                        "Vitamin K antagonists", "Vitamin K antagonist antidote", "Voglibose", "Vonoprazan", "Vorapaxar", "Voriconazole", "Vortioxetine", "Warfarin", "Xanthophyll", "Xenon", "Xerophthalmia", "Xifaxan", "Ximelagatran", 
+                        "Xipamide", "Xylose", "Yohimbine", "Zafirlukast", "Zaleplon", "Zanamivir", "Zanubrutinib", "Ziconotide", "Zidovudine", "Zinc", "Zinc acetate", "Zinc gluconate", "Zinc oxide", "Zinc oxide-eugenol cement", "Zinc stearate", 
+                        "Zinc sulfate", "Ziprasidone", "Zoledronic acid", "Zolmitriptan", "Zolpidem", "Zonisamide", "Zopiclone", "Zorubicin", "Zotarolimus", "Zuclopenthixol", "Zuclopenthixol decanoate", 
+                        "Zuranolone", "Zuclomiphene", "Zydis technology", "Zyklon B", "Pyridostigmine bromide", "Pyrimethamine", "Quetiapine", "Quinagolide", "Quinapril", "Quinine", "Quinupristin", "Rabeprazole", "Raloxifene", "Raltegravir", 
+                        "Raltitrexed", "Ramipril", "Ramucirumab", "Ranibizumab", "Ranitidine", "Ranolazine", "Rasagiline", "Rasburicase", "Raubasine", "Rauwolfia", "Ravulizumab", "Regorafenib", "Relatlimab", "Relugolix", "Remdesivir", "Remestemcel-L", "Remoxipride", 
+                        "Repaglinide", "Rescinnamine", "Reserpine", "Reslizumab", "Resocortol", "Retapamulin", "Reviparin", "Ribavirin", "Ribociclib", "Rifabutin", "Rifampin", "Rifaximin", "Rilpivirine", "Riluzole",
+                        "Riociguat", "Ripretinib", "Risankizumab", "Risdiplam", "Risedronic acid", "Risperidone", "Ritodrine", "Ritonavir", "Rituximab", "Rivaroxaban", "Rivastigmine", "Rizatriptan", "Robenacoxib", "Rocuronium bromide", "Rofecoxib", "Roflumilast", "Romidepsin", 
+                        "Romifidine", "Romiplostim", "Romosozumab", "Ronidazole", "Ropinirole", "Rosiglitazone", "Rosoxacin", "Rosuvastatin", "Rotigotine", "Rufinamide", "Rupatadine", "Ruxolitinib", "Sacituzumab govitecan", "Sacubitril", "Safinamide", 
+                        "Salbutamol", "Salicylic acid", "Salmeterol", "Salsalate", "Sapropterin", "Saquinavir", "Saralasin", "Sargramostim", "Sarilumab", "Satralizumab", "Saxagliptin", "Sebelipase alfa", "Secukinumab", "Selegiline", "Selexipag", "Selinexor", "Selpercatinib", 
+                        "Selumetinib", "Semaglutide", "Sermorelin", "Sertraline", "Setmelanotide", "Sevelamer", "Sevoflurane", "Sex hormones (Natural or synthetic)", "Sibutramine", "Sildenafil", "Silodosin", "Siltuximab", "Simeprevir", "Simvastatin", "Siponimod", "Sirolimus", 
+                        "Sitagliptin", "Sitaxentan", "Sodium Zirconium cyclosilicate", "Sodium bromide", "Sodium fluoride", "Sodium nitrite", "Sodium nitroprusside", "Sodium polystyrene sulfonate", "Sofosbuvir"]} onSelect={handleOptionSelect}/>
                         <img
                         loading="lazy"
                         src="https://cdn.builder.io/api/v1/image/assets/TEMP/5700307fde7b6a8fd02bde92bdf9917f5ceb761ece261302043412cabcc40d10?apiKey=d4725d47a8514f52916d5a74d4e7c8ac&"
@@ -79,9 +139,9 @@ function VerifyPrescription() {
                                 <br />
                                 <span className="text-4xl text-blue-500">Molnupiravir</span>
                             </div>
-                            <div className="justify-center px-9 py-1 mt-12 text-3xl font-medium text-center text-white bg-blue-500 border-solid border-[3px] border-white border-opacity-0 rounded-[30px] max-md:px-5 max-md:mt-10">
+                            <Link to='/prescription' className="justify-center px-9 py-1 mt-12 text-3xl font-medium text-center text-white bg-blue-500 border-solid border-[3px] border-white border-opacity-0 rounded-[30px] max-md:px-5 max-md:mt-10">
                                 Prescribe this instead.
-                            </div>
+                            </Link>
                         </div>
                     </div>
                     <div className="flex flex-col ml-5 w-[61%] max-md:ml-0 max-md:w-full">
@@ -104,12 +164,10 @@ function VerifyPrescription() {
                     </div>
                 </div>
                 </div>}
-                {isVisible && <div className="justify-center items-center px-16 py-1 mt-40 max-w-full text-3xl font-medium text-center text-white bg-blue-500 border-solid border-[3px] border-white border-opacity-0 rounded-[30px] w-[659px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
+                {isVisible && <Link to='/prescription' className="justify-center items-center px-16 py-1 mt-40 max-w-full text-3xl font-medium text-center text-white bg-blue-500 border-solid border-[3px] border-white border-opacity-0 rounded-[30px] w-[659px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
                         Continue with chosen medication.
-                </div>}
+                </Link>}
             </div>
         </div>
     );
 };
-
-export default VerifyPrescription;

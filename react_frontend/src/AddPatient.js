@@ -5,8 +5,9 @@ import { Stocks } from './components/Stocks'
 import { EditPatientProfile } from "./components/EditPatientProfile.js";
 import { MedList } from "./components/MedList.js";
 import { NoteList } from "./components/NoteList.js";
+import { Link } from 'react-router-dom';
 
-function AddPatient() {
+export const AddPatient = ({}) => {
 
     const[stocks, set_stocks] = useState([])
     const[selected_stock, set_selected_stock] = useState('portfolio')
@@ -44,7 +45,7 @@ function AddPatient() {
                         <div className="flex flex-col px-3 py-11 bg-white shadow-sm rounded-[30px] max-md:max-w-full">
                             <div className="flex gap-5 pb-6 justify-between self-center max-w-full font-semibold whitespace-nowrap w-[669px] max-md:flex-wrap">
                                 <div className="flex-auto pl-10 self-start text-4xl text-black">Medications</div>
-                                <div className="justify-center px-6 py-4 text-3xl text-center text-white bg-blue-500 rounded-3xl max-md:px-5">Add</div>
+                                <Link to='/verify-prescription' className="justify-center px-6 py-4 text-3xl text-center text-white bg-blue-500 rounded-3xl max-md:px-5">Add</Link>
                             </div>
 
                         </div>
@@ -69,13 +70,11 @@ function AddPatient() {
             </div>
 
             <button style={{ textAlign: 'centre' }} className="flex justify-center items-center">
-                <div className="w-[10%] pl-45 px-12 py-4 mt-11 text-3xl font-semibold text-white bg-blue-500 rounded-3xl max-md:px-5 max-md:mt-10">
+                <Link to='/' className="w-[10%] pl-45 px-12 py-4 mt-11 text-3xl font-semibold text-white bg-blue-500 rounded-3xl max-md:px-5 max-md:mt-10">
                     Save
-                </div>
+                </Link>
             </button>
 
         </div>
     );
 };
-
-export default AddPatient;

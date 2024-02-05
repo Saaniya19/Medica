@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react"
 import './App.css';
 import { Nav } from './components/NavBar.js'
+import { Link } from 'react-router-dom'
 
-function Prescription() {
+export const Prescription = ({}) => {
 
     const[stocks, set_stocks] = useState([])
     const[isOpen, setIsOpen] = useState(false);
@@ -99,12 +100,10 @@ function Prescription() {
           </div>
         </div>
         <button style={{ textAlign: 'centre' }} className="flex justify-center items-center">
-            <div className="w-[20%] pl-20 pr-40 px-12 py-4 mt-11 text-3xl font-semibold text-white bg-blue-500 rounded-3xl max-md:px-10 max-md:mt-10">
+            <Link to='/view-patient' className="w-[20%] pl-20 pr-40 px-12 py-4 mt-11 text-3xl font-semibold text-white bg-blue-500 rounded-3xl max-md:px-10 max-md:mt-10">
                 Save
-            </div>
+            </Link>
         </button>
       </div>
     );
 };  
-
-export default Prescription;
