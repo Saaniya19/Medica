@@ -19,7 +19,7 @@ from pytz import timezone
 
 main = Blueprint('main', __name__)
 
-@main.route('/add_patients', methods=['POST'])
+@main.route('/add_patient', methods=['POST'])
 def add_patient():
     request_data = request.json
     name = request_data['name']
