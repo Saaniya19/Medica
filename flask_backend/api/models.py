@@ -56,7 +56,18 @@ class StockData(db.Model):
         return f"<StockData {self.symbol} - {self.date}>"
 
 
+class Doctor(db.model):
+    __tablename__ = 'Doctors'
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(150), unique=True, nullable=False)
+    password = db.Column(db.String(150))
+    full_name = db.Column(db.String(150), nullable=False)
+    hospital = db.Column(db.String(150), nullable=False)  # May have to create a separate "Hospital" model and create a relationship
+    patients = db.relationship('Patient', backref='doctor', lazy=True)
 
-    
-
-
+class Patient(db.Model):
+    __tablename__ = 'Patients'
+    id = db.Column(db.Integer, primary_key=True)
+    full_name = db.Column(db.String(150), nullable=False)
+    doctor_id = db.Column(db.Integer, db.ForeignKey('doctors.id'), nullable=False)
+    # Medications = db.relationship ... 
