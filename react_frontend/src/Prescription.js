@@ -4,7 +4,6 @@ import { Nav } from './components/NavBar.js'
 import { Link } from 'react-router-dom'
 
 export const Prescription = ({}) => {
-
     const[stocks, set_stocks] = useState([])
     const[isOpen, setIsOpen] = useState(false);
     const[selectedItem, setSelectedItem] = useState(null);
@@ -49,7 +48,7 @@ export const Prescription = ({}) => {
                   </div>
                 </div>
                 <div className="flex gap-5 justify-between px-12 py-6 text-3xl whitespace-nowrap bg-neutral-100 border-[3px] rounded-[30px] text-neutral-600 max-md:flex-wrap max-md:px-5 max-md:max-w-full">
-                  <div className="flex-auto">Paxlovid</div>
+                  <div className="flex-auto">Pravastatin</div>
                 </div>
                 <div className="mt-4 max-md:max-w-full">
                   <div className="flex gap-5 max-md:flex-col max-md:gap-0 max-md:">

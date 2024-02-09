@@ -33,7 +33,7 @@ export const ViewPatient = ({}) => {
 
                     <div className="flex flex-col w-[30%] max-md:ml-0 max-md:w-full"></div>
 
-                    <PatientProfile name="" dob="" sex="" email="" address=""></PatientProfile>
+                    <PatientProfile name="Saaniya Saraf" dob="01/19/2004" sex="Female" email="saaniya@imagine.cup" address="123 Winner St"></PatientProfile>
 
                     <div className="flex flex-col ml-5 w-[44%] max-md:ml-0 max-md:w-full">
                         <div className="flex flex-col grow max-md:mt-10 max-md:max-w-full">
@@ -42,9 +42,8 @@ export const ViewPatient = ({}) => {
                                 <div className="flex-auto pl-10 self-start text-4xl text-black">Medications</div>
                                 <Link to='/verify-prescription' className="justify-center px-6 py-4 text-3xl text-center text-white bg-blue-500 rounded-3xl max-md:px-5">Add</Link>
                             </div>
-                            <MedList startDate="" medName="" dosage=""></MedList>
-                            <MedList startDate="" medName="" dosage=""></MedList>
-                            <MedList startDate="" medName="" dosage=""></MedList>
+                            <MedList startDate="10/16/2023" medName="Amoidarone" dosage="20 mg"></MedList>
+                            <MedList startDate="02/09/2024" medName="Rosuvastatin" dosage="15 mg"></MedList>
                         </div>
 
                         <div className="flex flex-col px-3 py-10 mt-20 bg-white shadow-sm rounded-[30px] max-md:mt-10 max-md:max-w-full">

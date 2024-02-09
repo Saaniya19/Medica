@@ -66,11 +66,11 @@ export const Home = ({}) => {
       </div>
       <div className="pb-20"></div>
 
-      <Patient name="Aayaan Naqvi" ID="1234567" age="79" sex="Male"></Patient>
-      <Patient name="Aayaan Naqvi" ID="1234567" age="79" sex="Male"></Patient>
-      <Patient name="Aayaan Naqvi" ID="1234567" age="79" sex="Male"></Patient>
-      <Patient name="Aayaan Naqvi" ID="1234567" age="79" sex="Male"></Patient>
-      <Patient name="Aayaan Naqvi" ID="1234567" age="79" sex="Male"></Patient>
+      <Patient name="Aayaan Naqvi" ID="1234567" age="19" sex="Male"></Patient>
+      <Patient name="Saaniya Saraf" ID="2345678" age="20" sex="Female"></Patient>
+      <Patient name="Yaser Nossibeh" ID="3456789" age="19" sex="Male"></Patient>
+      <Patient name="Imagine Cup" ID="4567890" age="21" sex="Male"></Patient>
+      <Patient name="New Patient" ID="3824902" age="24" sex="Female"></Patient>
 
     </div>
   );

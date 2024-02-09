@@ -161,7 +161,7 @@ export const VerifyPrescription = ({}) => {
                             <div className="mt-8 text-3xl font-semibold text-center text-blue-500">
                                 Recommended alternate:
                                 <br />
-                                <span className="text-4xl text-blue-500">Molnupiravir</span>
+                                <span className="text-4xl text-blue-500">Pravastatin</span>
                             </div>
                             <Link to='/prescription' className="justify-center px-9 py-1 mt-12 text-3xl font-medium text-center text-white bg-blue-500 border-solid border-[3px] border-white border-opacity-0 rounded-[30px] max-md:px-5 max-md:mt-10">
                                 Prescribe this instead.
@@ -180,7 +180,7 @@ export const VerifyPrescription = ({}) => {
                     </div>
                 </div>
                 </div>}
-                {isVisible && <Link to='/prescription' className="justify-center items-center px-16 py-1 mt-40 max-w-full text-3xl font-medium text-center text-white bg-blue-500 border-solid border-[3px] border-white border-opacity-0 rounded-[30px] w-[659px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
+                {isVisible && <Link to={{ pathname: '/prescription', state: { selectedOption } }} className="justify-center items-center px-16 py-1 mt-40 max-w-full text-3xl font-medium text-center text-white bg-blue-500 border-solid border-[3px] border-white border-opacity-0 rounded-[30px] w-[659px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
                         Continue with chosen medication.
                 </Link>}
             </div>
