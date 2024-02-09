@@ -22,8 +22,8 @@ timezone('EST').localize(datetime.utcnow()).strftime('%Y-%m-%d %H:%M:%S')
 #     date_updated = db.Column(db.TIMESTAMP)
 
 class Patient(db.Model):
-    def __init__(self, id, name, email, comments, age, sex, address):
-        self.id = id
+    def __init__(self, name, email, comments, age, sex, address):
+        #self.id = id
         self.name = name
         self.email = email
         self.comments = comments

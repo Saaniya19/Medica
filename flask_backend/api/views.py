@@ -64,7 +64,7 @@ def add_patient():
     db.session.add(new_patient)
     db.session.commit()
 
-    return jsonify({'patient added'})
+    return jsonify({'message':'patient added'})
 
 
 @main.route('/get_patients', methods = ['GET'])
