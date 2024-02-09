@@ -12,24 +12,54 @@ import apscheduler
 from apscheduler.schedulers.background import BackgroundScheduler
 from pytz import timezone
 
+import os
+from openai import AzureOpenAI
 
-# api_key = 'OTKHLLKZ9SXFZUHP'
-# api_key = 'DNWQMLFC43J1PHDI'
+client = AzureOpenAI(azure_endpoint="https://medica.openai.azure.com/",
+api_version="2023-09-15-preview",
+api_key = '223849ccf7d6427c965d9d4503b91291')
+#api_key=os.getenv("223849ccf7d6427c965d9d4503b91291"))
+
+def ask(med1):
+  response = client.completions.create(model="MedicaAI",
+  prompt=("Provide a description of the drug-drug interactions between the following pairs of medications to determine if it is safe for a patient to take these medications toegether. \n\nQ: Is it safe for a patient to take", med1, "and Acetaminophen at the same time?\nA:"),
+  temperature=0,
+  max_tokens=256,
+  top_p=1,
+  frequency_penalty=0,
+  presence_penalty=0,
+  stop=["\n"])
+  return response.choices[0].text
 
 
 main = Blueprint('main', __name__)
 
-@main.route('/add_data', methods=['POST'])
+@main.route('/ask', methods=['GET'])
+def ask_endpoint():
+    med1 = request.args.get('selected_med', '')
+    response = ask(med1)
+    return response
+
+@main.route('/add_patient', methods=['POST'])
 def add_patient():
     request_data = request.json
-    name = request_data['name']
-    email = request_data['email']
-    comments = request_data['comments']
-    age = request_data['age']
-    sex = request_data['sex']
-    address = request_data['address']
+    print (request.json)
+    name = str(request_data['name'])
+    email = str(request_data['email'])
+    comments = str(request_data['comments'])
+    age = int(request_data['age'])
+    sex = str(request_data['sex'])
+    address = str(request_data['address'])
 
-    new_patient = Patient(name, email, comments, age, sex, address)
+    # patient = Patient.query.order_by(desc(Patient.id))
+    # if patient: 
+    #     new_id = patient.id + 1
+    # else:
+    #     new_id = 1
+
+    # new_patient = Patient(name=name, email=email, comments=comments, age=age, sex=sex, address=address)
+    # new_patient = Patient(id=1, name="a", email="s", comments="s", age=1, sex="h", address="o")
+    new_patient = Patient(name=name, email=email, comments=comments, age=age, sex=sex, address=address)
 
     db.session.add(new_patient)
     db.session.commit()

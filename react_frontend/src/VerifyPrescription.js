@@ -15,7 +15,23 @@ export const VerifyPrescription = ({}) => {
     const handleDivClick = () => {
         setIsVisible(true);
     };
+    const [response, setResponse] = useState('');
 
+    useEffect(() => {
+        // Define the URL of your Flask backend endpoint
+        const url = `/ask/${selectedOption}`;
+        // Fetch data from the Flask backend
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                setResponse(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
+
+    
     return (
         <div className="flex flex-col pb-12 bg-white">
             <Nav></Nav>
@@ -150,15 +166,7 @@ export const VerifyPrescription = ({}) => {
                                 Not recommended for use
                             </div>
                             <div className="mt-11 text-3xl text-neutral-500 max-md:mt-10 max-md:max-w-full">
-                                Taking Paxlovid and Rifampin together can have serious
-                                consequences on the body, especially when taken within two weeks
-                                of each other. Combining these medications can significantly
-                                reduce the patient’s blood levels and can reduce the effects of
-                                a Paxlovid.
-                                <br />
-                                <br />
-                                Paxlovid can also result in a shortness of breath as a side
-                                effect. And is thus not recommended for this patient.
+                                {response}
                             </div>
                         </div>
                     </div>
