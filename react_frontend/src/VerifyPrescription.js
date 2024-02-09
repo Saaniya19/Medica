@@ -17,20 +17,27 @@ export const VerifyPrescription = ({}) => {
         setIsVisible(true);
     };
     const [response, setResponse] = useState('');
+    const [responseFromAsk, setResponseFromAsk] = useState(''); // Initialize with an empty string
 
     useEffect(() => {
-        // Define the URL of your Flask backend endpoint
-        const url = `/ask/selected_med=${selectedOption}`;
-        // Fetch data from the Flask backend
-        fetch(url)
-            .then(response => response.text())
-            .then(data => {
-                setResponse(data);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-    }, []);
+        fetch('/ask', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ selectedOption }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            const responseFromAsk = data.responseFromAsk;
+            setResponseFromAsk(responseFromAsk);
+            console.log(responseFromAsk)
+            // console.log(data);
+            // setResponse(data);
+        })
+        .catch(error => {
+        });
+    }, [selectedOption]);
 
     
     return (
@@ -167,7 +174,7 @@ export const VerifyPrescription = ({}) => {
                                 Not recommended for use
                             </div>
                             <div className="mt-11 text-3xl text-neutral-500 max-md:mt-10 max-md:max-w-full">
-                                {response}
+                                {responseFromAsk}
                             </div>
                         </div>
                     </div>

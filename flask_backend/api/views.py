@@ -22,7 +22,7 @@ api_key = '223849ccf7d6427c965d9d4503b91291')
 
 def ask(med):
   response = client.completions.create(model="MedicaAI",
-  prompt=("Provide an description of the drug-drug interactions between the following pairs of medications to determine if it is safe for a patient to take these medications together. \n\nQ: Is it safe for a patient to take " + med + " and Ibuprofen at the same time?\nA: "),
+  prompt="Provide a description of the drug-drug interactions between the following pairs of medications to determine if it is safe for a patient to take these medications together. \n\nQ: Is it safe for a patient to take " + med + " and Ibuprofen at the same time?\nA: ",
   temperature=0,
   max_tokens=256,
   top_p=1,
@@ -31,14 +31,18 @@ def ask(med):
   stop=["\nQ:"])
   return response.choices[0].text
 
-
 main = Blueprint('main', __name__)
 
-@main.route('/ask', methods=['GET'])
+@main.route('/ask', methods=['POST'])
 def ask_endpoint():
-    med1 = request.args.get('selected_med', '')
-    response = ask(med1)
-    return response
+    # med = request.args.get('selected_med', '')
+    data = request.json
+    med = data.get('selectedOption')
+    print(med)
+    responseFromAsk = ask(med)
+    print(responseFromAsk)
+    response_data = {'responseFromAsk' : responseFromAsk}
+    return jsonify(response_data)
 
 @main.route('/add_patient', methods=['POST'])
 def add_patient():
