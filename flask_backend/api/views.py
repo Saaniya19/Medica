@@ -20,15 +20,15 @@ api_version="2023-09-15-preview",
 api_key = '223849ccf7d6427c965d9d4503b91291')
 #api_key=os.getenv("223849ccf7d6427c965d9d4503b91291"))
 
-def ask(med1):
+def ask(med):
   response = client.completions.create(model="MedicaAI",
-  prompt=("Provide a description of the drug-drug interactions between the following pairs of medications to determine if it is safe for a patient to take these medications toegether. \n\nQ: Is it safe for a patient to take", med1, "and Acetaminophen at the same time?\nA:"),
+  prompt=("Provide an description of the drug-drug interactions between the following pairs of medications to determine if it is safe for a patient to take these medications together. \n\nQ: Is it safe for a patient to take " + med + " and Ibuprofen at the same time?\nA: "),
   temperature=0,
   max_tokens=256,
   top_p=1,
   frequency_penalty=0,
   presence_penalty=0,
-  stop=["\n"])
+  stop=["\nQ:"])
   return response.choices[0].text
 
 

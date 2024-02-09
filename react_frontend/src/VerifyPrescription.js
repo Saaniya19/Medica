@@ -4,6 +4,7 @@ import { Nav } from './components/NavBar.js'
 import { TypeAheadDropdown } from './components/TypeaheadDropdown.js'
 import { Link } from 'react-router-dom'
 
+
 export const VerifyPrescription = ({}) => {
 
     const [isVisible, setIsVisible] = useState(false);
@@ -19,7 +20,7 @@ export const VerifyPrescription = ({}) => {
 
     useEffect(() => {
         // Define the URL of your Flask backend endpoint
-        const url = `/ask/${selectedOption}`;
+        const url = `/ask/selected_med=${selectedOption}`;
         // Fetch data from the Flask backend
         fetch(url)
             .then(response => response.text())
