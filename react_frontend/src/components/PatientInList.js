@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react"
+import { Link } from 'react-router-dom';
 
 export const Patient = ({ name, ID, age, sex}) => {
     return (
-        <button style={{ textAlign: 'left' }} className="flex z-10 gap-5 justify-between items-stretch px-12 py-3 mt-2 w-[90%] rounded-xl border-white border-solid bg-stone-50 border-[3px] max-w-[1575px] max-md:flex-wrap max-md:px-5 max-md:max-w-full">
+        <Link to='/view-patient' style={{ textAlign: 'left' }} className="flex z-10 gap-5 justify-between items-stretch px-12 py-3 mt-2 w-[90%] rounded-xl border-white border-solid bg-stone-50 border-[3px] max-w-[1575px] max-md:flex-wrap max-md:px-5 max-md:max-w-full">
             <div className="flex-auto self-start mt-4 text-3xl font-medium text-neutral-400 max-md:max-w-full">
                 {name} <span className="text-neutral-400">(ID #{ID})</span>
             </div>
@@ -14,6 +15,6 @@ export const Patient = ({ name, ID, age, sex}) => {
                 Sex: {sex}
             </div>
             </div>
-        </button>
+        </Link>
     );
 };

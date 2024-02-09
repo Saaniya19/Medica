@@ -5,8 +5,9 @@ import { Stocks } from './components/Stocks'
 import { PatientProfile } from "./components/PatientProfile.js";
 import { MedList } from "./components/MedList.js";
 import { NoteList } from "./components/NoteList.js";
+import { Link } from 'react-router-dom';
 
-function ViewPatient() {
+export const ViewPatient = ({}) => {
 
     const[stocks, set_stocks] = useState([])
     const[selected_stock, set_selected_stock] = useState('portfolio')
@@ -39,7 +40,7 @@ function ViewPatient() {
                         <div className="flex flex-col px-3 py-11 bg-white shadow-sm rounded-[30px] max-md:max-w-full">
                             <div className="flex gap-5 pb-6 justify-between self-center max-w-full font-semibold whitespace-nowrap w-[669px] max-md:flex-wrap">
                                 <div className="flex-auto pl-10 self-start text-4xl text-black">Medications</div>
-                                <div className="justify-center px-6 py-4 text-3xl text-center text-white bg-blue-500 rounded-3xl max-md:px-5">Add</div>
+                                <Link to='/verify-prescription' className="justify-center px-6 py-4 text-3xl text-center text-white bg-blue-500 rounded-3xl max-md:px-5">Add</Link>
                             </div>
                             <MedList startDate="" medName="" dosage=""></MedList>
                             <MedList startDate="" medName="" dosage=""></MedList>
@@ -67,5 +68,3 @@ function ViewPatient() {
         </div>
     );
 };
-
-export default ViewPatient;

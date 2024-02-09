@@ -8,7 +8,7 @@ def create_app():
 
     # app.debug = True
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:India9911@localhost/medica'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:India9911@localhost/medica2'
 
     db.init_app(app)
 

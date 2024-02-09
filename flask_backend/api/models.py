@@ -22,6 +22,16 @@ timezone('EST').localize(datetime.utcnow()).strftime('%Y-%m-%d %H:%M:%S')
 #     date_updated = db.Column(db.TIMESTAMP)
 
 class Patient(db.Model):
+    def __init__(self, name, email, comments, age, sex, address):
+        #self.id = id
+        self.name = name
+        self.email = email
+        self.comments = comments
+        self.age = age
+        self.sex = sex
+        self.address = address
+
+
     __tablename__ = 'Patients'
     id = db.Column(db.Integer, primary_key = True)
     # time = db.Column(db.TIMESTAMP(timezone = True), default = datetime.now(timezone('EST')))
@@ -29,7 +39,7 @@ class Patient(db.Model):
     name = db.Column(db.String)
     email = db.Column(db.String)
     comments = db.Column(db.String)
-    age = db.Column(db.Integer, primary_key = True)
+    age = db.Column(db.Integer)
     sex = db.Column(db.String)
     address = db.Column(db.String)
     
@@ -68,9 +78,5 @@ class Patient(db.Model):
 
 #     def __repr__(self):
 #         return f"<StockData {self.symbol} - {self.date}>"
-
-
-
-    
 
 
