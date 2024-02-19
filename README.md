@@ -1,8 +1,8 @@
-Trackr
+Medica
 =========
 
 ## Introduction
-Trackr is a web-app that aims to make it easier to track stocks, with an intuitive interface, an LSTM neural network model making predictions, links to relevant news, as well as a number of relevant statistics! 
+Medica seeks to make the prescription process easier for physicians and pharmacists, using next-gen AI to quickly identify drug interactions between medications and provide viable alternatives.
 
 ## Setup (deploying soon!)
 
