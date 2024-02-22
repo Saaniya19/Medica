@@ -11,13 +11,14 @@ from datetime import datetime, timedelta
 import apscheduler
 from apscheduler.schedulers.background import BackgroundScheduler
 from pytz import timezone
+from flask_bcrypt import Bcrypt
 
 
 # api_key = 'OTKHLLKZ9SXFZUHP'
 api_key = 'DNWQMLFC43J1PHDI'
 
-
 main = Blueprint('main', __name__)
+bcrypt = Bcrypt()
 
 @main.route('/add_data', methods=['POST'])
 def add_data():
