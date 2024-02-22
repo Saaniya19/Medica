@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 import random
-from .models import Stock, Portfolio_Log, News_Item, StockData
+from .models import Stock, Portfolio_Log, Doctor
 from . import db
 import string
 import requests
@@ -19,6 +19,16 @@ api_key = 'DNWQMLFC43J1PHDI'
 
 main = Blueprint('main', __name__)
 bcrypt = Bcrypt()
+
+@main.route('/doctor_signup', methods=['POST'])
+def doctorSignup():
+    data = request.get_json()
+    hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
+    new_user = Doctor(email=data['email'], password=hashed_password, full_name=data['full_name'], patients=[])
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify({'message': 'User created successfully'})
+
 
 @main.route('/add_data', methods=['POST'])
 def add_data():
