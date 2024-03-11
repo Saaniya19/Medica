@@ -24,7 +24,7 @@ bcrypt = Bcrypt()
 def doctorSignup():
     data = request.get_json()
     hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
-    new_user = Doctor(email=data['email'], password=hashed_password, full_name=data['full_name'], patients=[])
+    new_user = Doctor(email=data['email'], password=hashed_password, full_name=data['full_name'])
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'message': 'User created successfully'})
