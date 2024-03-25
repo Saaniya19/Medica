@@ -9,17 +9,18 @@ import { Link } from 'react-router-dom';
 
 export const Home = ({}) => {
 
-  const[stocks, set_stocks] = useState([])
+  const[patients, set_patients] = useState([])
 
-  const[selected_stock, set_selected_stock] = useState('portfolio')
+  const[selected_patient, set_selected_patient] = useState('portfolio')
 
   useEffect(() => {
     fetch("/get_patients").then(response =>
       response.json().then(data => {
-        set_stocks(data.stocks);
+        set_patients(data.patients);
+        console.log(patients)
       })
     );
-  }, [stocks]);
+  }, [patients]);
 
   return (
     <div className="flex flex-col items-center pb-9 bg-white">
@@ -65,6 +66,11 @@ export const Home = ({}) => {
         </div>
       </div>
       <div className="pb-20"></div>
+      {
+        patients.map(patient => (
+          <Patient name={patient.name} ID={patient.id} age={patient.age} sex={patient.sex}></Patient>
+        ))
+      }
 
       <Patient name="Aayaan Naqvi" ID="1234567" age="79" sex="Male"></Patient>
       <Patient name="Aayaan Naqvi" ID="1234567" age="79" sex="Male"></Patient>

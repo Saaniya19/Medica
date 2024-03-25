@@ -19,7 +19,7 @@ export const ViewPatient = ({}) => {
     useEffect(() => {
         fetch("/get_patients").then(response =>
         response.json().then(data => {
-            set_stocks(data.stocks);
+            set_stocks(data.patients);
         })
         );
     }, [stocks]);

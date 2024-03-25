@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 import apscheduler
 from apscheduler.schedulers.background import BackgroundScheduler
 from pytz import timezone
+import random
 
 import os
 from openai import AzureOpenAI
@@ -76,7 +77,7 @@ def get_patients():
     patients = []
 
     for patient in patient_list:
-        patients.append({'name': patient.name, 'email': patient.email, 'comments': patient.comments, 'age':patient.age, 'sex': patient.sex, 'address': patient.address})
+        patients.append({'name': patient.name, 'email': patient.email, 'comments': patient.comments, 'age':patient.age, 'sex': patient.sex, 'address': patient.address, 'id':8})
 
     return jsonify({'patients':patients})
 
