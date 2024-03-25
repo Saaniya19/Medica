@@ -5,21 +5,21 @@ from pytz import timezone
 
 timezone('EST').localize(datetime.utcnow()).strftime('%Y-%m-%d %H:%M:%S')
 
-# class Stock(db.Model):
-#     __tablename__ = 'Stock_Info'
-#     id = db.Column(db.Integer, primary_key = True)
-#     # time = db.Column(db.TIMESTAMP(timezone = True), default = datetime.now(timezone('EST')))
-#     time = db.Column(db.TIMESTAMP, default=lambda: datetime.now(timezone('EST')))
-#     name = db.Column(db.String(16))
-#     price = db.Column(db.Float)
-#     prev_price = db.Column(db.Float)
-#     change = db.Column(db.Float)
-#     percent_change = db.Column(db.Float)
-#     amount = db.Column(db.Float)
-#     price_bought_at = db.Column(db.Float)
-#     average_price = db.Column(db.Float)
-#     value = db.Column(db.Float)
-#     date_updated = db.Column(db.TIMESTAMP)
+class Stock(db.Model):
+    __tablename__ = 'Stock_Info'
+    id = db.Column(db.Integer, primary_key = True)
+    # time = db.Column(db.TIMESTAMP(timezone = True), default = datetime.now(timezone('EST')))
+    time = db.Column(db.TIMESTAMP, default=lambda: datetime.now(timezone('EST')))
+    name = db.Column(db.String(16))
+    price = db.Column(db.Float)
+    prev_price = db.Column(db.Float)
+    change = db.Column(db.Float)
+    percent_change = db.Column(db.Float)
+    amount = db.Column(db.Float)
+    price_bought_at = db.Column(db.Float)
+    average_price = db.Column(db.Float)
+    value = db.Column(db.Float)
+    date_updated = db.Column(db.TIMESTAMP)
 
 class Patient(db.Model):
     def __init__(self, name, email, comments, age, sex, address):
@@ -76,7 +76,15 @@ class Patient(db.Model):
 #     date = db.Column(db.Date, nullable=False)
 #     price = db.Column(db.Float, nullable=False)
 
-#     def __repr__(self):
-#         return f"<StockData {self.symbol} - {self.date}>"
+    def __repr__(self):
+        return f"<StockData {self.symbol} - {self.date}>"
 
 
+class Doctor(db.model):
+    __tablename__ = 'Doctors'
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(150), unique=True, nullable=False)
+    password = db.Column(db.String(150))
+    full_name = db.Column(db.String(150), nullable=False)
+    hospital = db.Column(db.String(150), nullable=False)  # May have to create a separate "Hospital" model and create a relationship
+    patients = db.relationship('Patient', backref='doctor', lazy=True)

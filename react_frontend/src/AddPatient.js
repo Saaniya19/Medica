@@ -140,11 +140,11 @@ export const AddPatient = ({}) => {
                     </div>
             </div>
 
-            <button style={{ textAlign: 'centre' }} className="flex justify-center items-center">
-                <Link to='/' onClick={handleSubmit} className="w-[10%] pl-45 px-12 py-4 mt-11 text-3xl font-semibold text-white bg-blue-500 rounded-3xl max-md:px-5 max-md:mt-10">
+            <Link to='/' onClick={handleSubmit} style={{ textAlign: 'centre' }} className="flex justify-center items-center">
+                <div className="w-[10%] pl-45 px-12 py-4 mt-11 text-3xl font-semibold text-white bg-blue-500 rounded-3xl max-md:px-5 max-md:mt-10">
                     Save
-                </Link>
-            </button>
+                </div>
+            </Link>
 
         </div>
     );
